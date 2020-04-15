@@ -1,0 +1,18 @@
+prj
+sbt clean; sbt update; sbt package
+
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.4 --class com.github.paachary.scala.kafka.SparkStreamReaderKafkaProducer --master local[*] target/scala-2.11/kafka-scala-integration_2.11-0.1.jar
+
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.4,org.apache.spark:spark-streaming-kafka_2.11:1.6.3 --class com.github.paachary.scala.kafka.SparkStreamReaderKafkaConsumer --master local[*] target/scala-2.11/kafka-scala-integration_2.11-0.1.jar
+
+spark-submit --packages org.apache.kafka:kafka-clients_2.11:2.4.1 --class com.github.paachary.scala.kafka.Consumer  --master local[*] target/scala-2.11/kafka-scala-integration_2.11-0.1.jar
+
+
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.4,org.apache.spark:spark-streaming-kafka_2.11:1.6.3,org.elasticsearch:elasticsearch-spark-20_2.11:7.6.2 --class com.github.paachary.scala.kafka.SparkStreamReaderKafkaConsumer --master local[*] target/scala-2.11/kafka-scala-integration_2.11-0.1.jar
+
+
+## Curl command fopr elastic search
+./curl -XGET localhost:9200/flight/_search?size=10000\&pretty
+
+./curl -XGET localhost:9200/_cat/indices
+
